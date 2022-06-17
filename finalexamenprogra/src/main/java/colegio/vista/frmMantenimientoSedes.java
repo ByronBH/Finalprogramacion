@@ -5,8 +5,9 @@
  */
 package colegio.vista;
 
-import colegio.modelo.daoFacultad;
-import colegio.controlador.clsFacultades;
+import colegio.modelo.daoSede;
+import colegio.controlador.clsSedes;
+import colegio.controlador.clsSedes;
 import java.awt.Desktop;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
+public class frmMantenimientoSedes extends javax.swing.JInternalFrame {
 
     public void llenadoDeCombos() {
         /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -30,20 +31,20 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("codigo_facultad");
-        modelo.addColumn("nombre_facultad");
-        modelo.addColumn("estatus_facultad");
+        modelo.addColumn("codigo_sede");
+        modelo.addColumn("nombre_sede");
+        modelo.addColumn("estatus_sede");
         
-        daoFacultad facultadDAO = new daoFacultad();
-        List<clsFacultades> facultades = facultadDAO.select();
+        daoSede sedeDAO = new daoSede();
+        List<clsSedes> sedes = sedeDAO.select();
         tablaVendedores.setModel(modelo);
         String[] dato = new String[3];
-        for (int i = 0; i < facultades.size(); i++) {
-            dato[0] = Integer.toString(facultades.get(i).getcodigo_facultad());
-            dato[1] = facultades.get(i).getnombre_facultad();
-            dato[2] = facultades.get(i).getestatus_facultad();
+        for (int i = 0; i < sedes.size(); i++) {
+            dato[0] = Integer.toString(sedes.get(i).getcodigo_sede());
+            dato[1] = sedes.get(i).getnombre_sede();
+            dato[2] = sedes.get(i).getestatus_sede();
             
-            //System.out.println("facultad:" + facultades);
+            //System.out.println("sede:" + sedes);
             modelo.addRow(dato);
         }
     }
@@ -54,16 +55,16 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
     }
 
     public void buscarVendedor() {
-        clsFacultades facultadAConsultar = new clsFacultades();
-        daoFacultad facultadDAO = new daoFacultad();
-        facultadAConsultar.setcodigo_facultad(Integer.parseInt(txtbuscado.getText()));
-        facultadAConsultar = facultadDAO.query(facultadAConsultar);
-        txtNombre.setText(facultadAConsultar.getnombre_facultad());   
-        cbox_estado.setSelectedItem(facultadAConsultar.getestatus_facultad());
+        clsSedes sedeAConsultar = new clsSedes();
+        daoSede sedeDAO = new daoSede();
+        sedeAConsultar.setcodigo_sede(Integer.parseInt(txtbuscado.getText()));
+        sedeAConsultar = sedeDAO.query(sedeAConsultar);
+        txtNombre.setText(sedeAConsultar.getnombre_sede());   
+        cbox_estado.setSelectedItem(sedeAConsultar.getestatus_sede());
         
     }
 
-    public frmMantenimientofacultad() {
+    public frmMantenimientoSedes() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -106,7 +107,7 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Mantenimiento Facultad");
+        setTitle("Mantenimiento Sedes");
         setVisible(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -222,10 +223,10 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
         
         int i =JOptionPane.showConfirmDialog(this, "seguro que quieres borrar este dato ");
         if ( i == 0){
-        daoFacultad facultadDAO = new daoFacultad();
-        clsFacultades facultadAEliminar = new clsFacultades();
-        facultadAEliminar.setcodigo_facultad(Integer.parseInt(txtbuscado.getText()));
-        facultadDAO.delete(facultadAEliminar);
+        daoSede sedeDAO = new daoSede();
+        clsSedes sedeAEliminar = new clsSedes();
+        sedeAEliminar.setcodigo_sede(Integer.parseInt(txtbuscado.getText()));
+        sedeDAO.delete(sedeAEliminar);
        
         }else if(1==1){
          JOptionPane.showMessageDialog(this, "no se a borrado los datos ");
@@ -234,11 +235,11 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoFacultad facultadDAO = new daoFacultad();
-        clsFacultades facultadAInsertar = new clsFacultades();
-        facultadAInsertar.setnombre_facultad(txtNombre.getText());
-         facultadAInsertar.setestatus_facultad(cbox_estado.getSelectedItem().toString());
-        facultadDAO.insert(facultadAInsertar);
+        daoSede sedeDAO = new daoSede();
+        clsSedes sedeAInsertar = new clsSedes();
+        sedeAInsertar.setnombre_sede(txtNombre.getText());
+         sedeAInsertar.setestatus_sede(cbox_estado.getSelectedItem().toString());
+        sedeDAO.insert(sedeAInsertar);
         
         llenadoDeTablas();
         
@@ -254,12 +255,12 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
 //        // TODO add your handling code here:
   int i =JOptionPane.showConfirmDialog(this, "seguro que quieres modificar este dato ");
         if ( i == 0){
-        daoFacultad facultadDAO = new daoFacultad();
-        clsFacultades facultadAActualizar = new clsFacultades();
-        facultadAActualizar.setcodigo_facultad(Integer.parseInt(txtbuscado.getText()));
-        facultadAActualizar.setnombre_facultad(txtNombre.getText());
-        facultadAActualizar.setestatus_facultad(cbox_estado.getSelectedItem().toString());
-        facultadDAO.update(facultadAActualizar);
+        daoSede sedeDAO = new daoSede();
+        clsSedes sedeAActualizar = new clsSedes();
+        sedeAActualizar.setcodigo_sede(Integer.parseInt(txtbuscado.getText()));
+        sedeAActualizar.setnombre_sede(txtNombre.getText());
+        sedeAActualizar.setestatus_sede(cbox_estado.getSelectedItem().toString());
+        sedeDAO.update(sedeAActualizar);
         
         } else if(1==1){
          JOptionPane.showMessageDialog(this, "no se a modificado los datos ");
