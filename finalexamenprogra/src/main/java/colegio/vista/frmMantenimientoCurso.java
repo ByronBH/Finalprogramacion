@@ -5,8 +5,8 @@
  */
 package colegio.vista;
 
-import colegio.modelo.daoFacultad;
-import colegio.controlador.clsFacultades;
+import colegio.modelo.daoCurso;
+import colegio.controlador.clsCursos;
 import java.awt.Desktop;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author visitante
  */
-public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
+public class frmMantenimientoCurso extends javax.swing.JInternalFrame {
 
     public void llenadoDeCombos() {
         /*EmpleadoDAO empleadoDAO = new EmpleadoDAO();
@@ -30,20 +30,20 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
 
     public void llenadoDeTablas() {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("codigo_facultad");
-        modelo.addColumn("nombre_facultad");
-        modelo.addColumn("estatus_facultad");
+        modelo.addColumn("codigo_curso");
+        modelo.addColumn("nombre_curso");
+        modelo.addColumn("estatus_curso");
         
-        daoFacultad facultadDAO = new daoFacultad();
-        List<clsFacultades> facultades = facultadDAO.select();
+        daoCurso cursoDAO = new daoCurso();
+        List<clsCursos> cursos = cursoDAO.select();
         tablaVendedores.setModel(modelo);
         String[] dato = new String[3];
-        for (int i = 0; i < facultades.size(); i++) {
-            dato[0] = Integer.toString(facultades.get(i).getcodigo_facultad());
-            dato[1] = facultades.get(i).getnombre_facultad();
-            dato[2] = facultades.get(i).getestatus_facultad();
+        for (int i = 0; i < cursos.size(); i++) {
+            dato[0] = Integer.toString(cursos.get(i).getcodigo_curso());
+            dato[1] = cursos.get(i).getnombre_curso();
+            dato[2] = cursos.get(i).getestatus_curso();
             
-            //System.out.println("facultad:" + facultades);
+            //System.out.println("curso:" + cursos);
             modelo.addRow(dato);
         }
     }
@@ -54,16 +54,16 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
     }
 
     public void buscarVendedor() {
-        clsFacultades facultadAConsultar = new clsFacultades();
-        daoFacultad facultadDAO = new daoFacultad();
-        facultadAConsultar.setcodigo_facultad(Integer.parseInt(txtbuscado.getText()));
-        facultadAConsultar = facultadDAO.query(facultadAConsultar);
-        txtNombre.setText(facultadAConsultar.getnombre_facultad());   
-        cbox_estado.setSelectedItem(facultadAConsultar.getestatus_facultad());
+        clsCursos cursoAConsultar = new clsCursos();
+        daoCurso cursoDAO = new daoCurso();
+        cursoAConsultar.setcodigo_curso(Integer.parseInt(txtbuscado.getText()));
+        cursoAConsultar = cursoDAO.query(cursoAConsultar);
+        txtNombre.setText(cursoAConsultar.getnombre_curso());   
+        cbox_estado.setSelectedItem(cursoAConsultar.getestatus_curso());
         
     }
 
-    public frmMantenimientofacultad() {
+    public frmMantenimientoCurso() {
         initComponents();
         llenadoDeTablas();
         llenadoDeCombos();
@@ -222,10 +222,10 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
         
         int i =JOptionPane.showConfirmDialog(this, "seguro que quieres borrar este dato ");
         if ( i == 0){
-        daoFacultad facultadDAO = new daoFacultad();
-        clsFacultades facultadAEliminar = new clsFacultades();
-        facultadAEliminar.setcodigo_facultad(Integer.parseInt(txtbuscado.getText()));
-        facultadDAO.delete(facultadAEliminar);
+        daoCurso cursoDAO = new daoCurso();
+        clsCursos cursoAEliminar = new clsCursos();
+        cursoAEliminar.setcodigo_curso(Integer.parseInt(txtbuscado.getText()));
+        cursoDAO.delete(cursoAEliminar);
        
         }else if(1==1){
          JOptionPane.showMessageDialog(this, "no se a borrado los datos ");
@@ -234,11 +234,11 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        daoFacultad facultadDAO = new daoFacultad();
-        clsFacultades facultadAInsertar = new clsFacultades();
-        facultadAInsertar.setnombre_facultad(txtNombre.getText());
-         facultadAInsertar.setestatus_facultad(cbox_estado.getSelectedItem().toString());
-        facultadDAO.insert(facultadAInsertar);
+        daoCurso cursoDAO = new daoCurso();
+        clsCursos cursoAInsertar = new clsCursos();
+        cursoAInsertar.setnombre_curso(txtNombre.getText());
+         cursoAInsertar.setestatus_curso(cbox_estado.getSelectedItem().toString());
+        cursoDAO.insert(cursoAInsertar);
         
         llenadoDeTablas();
         
@@ -254,12 +254,12 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
 //        // TODO add your handling code here:
   int i =JOptionPane.showConfirmDialog(this, "seguro que quieres modificar este dato ");
         if ( i == 0){
-        daoFacultad facultadDAO = new daoFacultad();
-        clsFacultades facultadAActualizar = new clsFacultades();
-        facultadAActualizar.setcodigo_facultad(Integer.parseInt(txtbuscado.getText()));
-        facultadAActualizar.setnombre_facultad(txtNombre.getText());
-        facultadAActualizar.setestatus_facultad(cbox_estado.getSelectedItem().toString());
-        facultadDAO.update(facultadAActualizar);
+        daoCurso cursoDAO = new daoCurso();
+        clsCursos cursoAActualizar = new clsCursos();
+        cursoAActualizar.setcodigo_curso(Integer.parseInt(txtbuscado.getText()));
+        cursoAActualizar.setnombre_curso(txtNombre.getText());
+        cursoAActualizar.setestatus_curso(cbox_estado.getSelectedItem().toString());
+        cursoDAO.update(cursoAActualizar);
         
         } else if(1==1){
          JOptionPane.showMessageDialog(this, "no se a modificado los datos ");
