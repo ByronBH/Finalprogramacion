@@ -135,7 +135,7 @@ public class frmMantenimientoCurso extends javax.swing.JInternalFrame {
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 95, -1));
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Facultades");
+        label1.setText("Curso");
         getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, -1, -1));
 
         btnModificar.setText("Modificar");
@@ -147,7 +147,7 @@ public class frmMantenimientoCurso extends javax.swing.JInternalFrame {
         getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 95, -1));
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Nombre departamento");
+        label3.setText("Nombre curso");
         label3.setToolTipText("En este apartado se agrega el nombre de los departamentos que tiene la empresa");
         getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
         getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 240, 20));

@@ -147,7 +147,7 @@ public class frmMantenimientofacultad extends javax.swing.JInternalFrame {
         getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 95, -1));
 
         label3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label3.setText("Nombre Sedes");
+        label3.setText("Nombre Facultad");
         label3.setToolTipText("En este apartado se agrega el nombre de los departamentos que tiene la empresa");
         getContentPane().add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
         getContentPane().add(txtbuscado, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 240, 20));

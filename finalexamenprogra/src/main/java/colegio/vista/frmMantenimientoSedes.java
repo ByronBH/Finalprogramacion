@@ -136,8 +136,8 @@ public class frmMantenimientoSedes extends javax.swing.JInternalFrame {
         getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 95, -1));
 
         label1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        label1.setText("Facultades");
-        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, -1, -1));
+        label1.setText("Sedes");
+        getContentPane().add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, -1, 20));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
